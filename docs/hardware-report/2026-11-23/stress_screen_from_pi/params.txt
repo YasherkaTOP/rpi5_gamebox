@@ -1,0 +1,3 @@
+tag=screen_from_pi duration_min=15 cpu=1 ssd=1 audio=1 hailo=1 model=qwen2:1.5b
+play_dev=hdmi:CARD=vc4hdmi1,DEV=0 start=2026-11-23T08:41:43+03:00
+throttled=0x0

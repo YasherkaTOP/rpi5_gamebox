@@ -1,0 +1,45 @@
+$ timedatectl
+               Local time: Mon 2026-11-23 08:59:28 MSK
+           Universal time: Mon 2026-11-23 05:59:28 UTC
+                 RTC time: Mon 2026-11-23 05:59:28
+                Time zone: Europe/Moscow (MSK, +0300)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+[exit=0]
+
+$ timedatectl show-timesync --all 2>/dev/null | head -20
+LinkNTPServers=
+SystemNTPServers=
+RuntimeNTPServers=
+FallbackNTPServers=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
+ServerName=2.debian.pool.ntp.org
+ServerAddress=89.179.240.219
+RootDistanceMaxUSec=5s
+PollIntervalMinUSec=32s
+PollIntervalMaxUSec=34min 8s
+PollIntervalUSec=17min 4s
+NTPMessage={ Leap=0, Version=4, Mode=4, Stratum=2, Precision=-22, RootDelay=7.965ms, RootDispersion=4.776ms, Reference=596DFB18, OriginateTimestamp=Mon 2026-11-23 08:48:24 MSK, ReceiveTimestamp=Mon 2026-11-23 08:48:24 MSK, TransmitTimestamp=Mon 2026-11-23 08:48:24 MSK, DestinationTimestamp=Mon 2026-11-23 08:48:24 MSK, Ignored=yes, PacketCount=6, Jitter=3.684ms }
+Frequency=-83511
+[exit=0]
+
+$ hwclock -r
+bash: line 1: hwclock: command not found
+[exit=127]
+
+$ for f in $(find /sys/devices/platform -path "*rtc*" \( -name battery_voltage -o -name charging_voltage \) 2>/dev/null); do echo "$f: $(cat $f)"; done
+/sys/devices/platform/soc@107c000000/soc@107c000000:rpi_rtc/rtc/rtc0/battery_voltage: 0
+/sys/devices/platform/soc@107c000000/soc@107c000000:rpi_rtc/rtc/rtc0/charging_voltage: 0
+[exit=0]
+
+$ grep -n rtc_bbat /boot/firmware/config.txt || echo "rtc_bbat_vchg не задан (зарядка выключена) — правильно для CR2032"
+rtc_bbat_vchg не задан (зарядка выключена) — правильно для CR2032
+[exit=0]
+
+$ dmesg | grep -iE "rtc" 
+[    0.393460] rpi-rtc soc@107c000000:rpi_rtc: registered as rtc0
+[    0.394000] rpi-rtc soc@107c000000:rpi_rtc: setting system clock to 1970-01-01T00:00:39 UTC (39)
+[    1.001083] vc4-drm axi:gpu: bound 107c410000.pixelvalve (ops vc4_crtc_ops [vc4])
+[    1.001141] vc4-drm axi:gpu: bound 107c411000.pixelvalve (ops vc4_crtc_ops [vc4])
+[exit=0]
+

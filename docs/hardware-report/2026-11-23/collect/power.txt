@@ -1,0 +1,52 @@
+$ vcgencmd get_config usb_max_current_enable
+usb_max_current_enable=1
+[exit=0]
+
+$ for f in /proc/device-tree/chosen/power/*; do printf "%s: " "$f"; od -An -tu4 --endian=big "$f" | tr -s " "; done
+/proc/device-tree/chosen/power/max_current:  5000
+/proc/device-tree/chosen/power/name:  1886353253 1912602624
+/proc/device-tree/chosen/power/power_reset:  0
+/proc/device-tree/chosen/power/rpi_power_supply:  11914 983040
+/proc/device-tree/chosen/power/sd_overcurrent:  0
+/proc/device-tree/chosen/power/usb_max_current_enable:  1
+/proc/device-tree/chosen/power/usb_over_current_detected:  0
+/proc/device-tree/chosen/power/usbpd_power_data_objects:  167875060 184620 245985 307380
+ 0 0 0
+[exit=0]
+
+$ vcgencmd get_throttled
+throttled=0x0
+[exit=0]
+
+$ vcgencmd pmic_read_adc
+ 3V7_WL_SW_A current(0)=0.05270022A
+   3V3_SYS_A current(1)=0.07319475A
+   1V8_SYS_A current(2)=0.16981180A
+  DDR_VDD2_A current(3)=0.00878337A
+  DDR_VDDQ_A current(4)=0.00000000A
+   1V1_SYS_A current(5)=0.19128230A
+    0V8_SW_A current(6)=0.28301970A
+  VDD_CORE_A current(7)=1.16090000A
+   3V3_DAC_A current(17)=0.00000000A
+   3V3_ADC_A current(18)=0.00000000A
+   0V8_AON_A current(16)=0.00231990A
+      HDMI_A current(22)=0.02002440A
+ 3V7_WL_SW_V volt(8)=3.71740800V
+   3V3_SYS_V volt(9)=3.31096100V
+   1V8_SYS_V volt(10)=1.80024200V
+  DDR_VDD2_V volt(11)=1.10695900V
+  DDR_VDDQ_V volt(12)=0.60366240V
+   1V1_SYS_V volt(13)=1.10842400V
+    0V8_SW_V volt(14)=0.80586010V
+  VDD_CORE_V volt(15)=0.83621410V
+   3V3_DAC_V volt(20)=3.31684600V
+   3V3_ADC_V volt(21)=3.31318300V
+   0V8_AON_V volt(19)=0.80087830V
+      HDMI_V volt(23)=5.15632000V
+     EXT5V_V volt(24)=5.14962000V
+      BATT_V volt(25)=0.00000000V
+[exit=0]
+
+$ dmesg | grep -iE "under-?voltage|over-?current|power supply|pd |usb_max|psu" || true
+[exit=0]
+

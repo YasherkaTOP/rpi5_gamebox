@@ -1,0 +1,22 @@
+{
+  "duration_s": 895,
+  "samples": 178,
+  "temp_max_c": 67.0,
+  "temp_last_c": 64.2,
+  "temp_ok_lt_80": true,
+  "arm_mhz_min": 2400.0,
+  "ext5v_min_v": 5.1255,
+  "ext5v_ok_ge_4_8": true,
+  "fan_rpm_max": 8038.0,
+  "throttled_at_start": "0x0",
+  "throttled_or": "0x0",
+  "throttled_flags": [],
+  "power_ok": true,
+  "hailo": {
+    "requests": 89577,
+    "ok": 89577,
+    "failed": 0,
+    "median_s": 0.000483
+  },
+  "dmesg_suspicious": []
+}

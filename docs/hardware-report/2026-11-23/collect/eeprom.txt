@@ -1,0 +1,24 @@
+$ rpi-eeprom-update
+BOOTLOADER: up to date
+   CURRENT: Fri 30 Oct 20:55:54 UTC 2026 (1793393754)
+    LATEST: Fri 30 Oct 20:55:54 UTC 2026 (1793393754)
+   RELEASE: default (/usr/lib/firmware/raspberrypi/bootloader-2712/default)
+            Use raspi-config to change the release.
+[exit=0]
+
+$ rpi-eeprom-config
+[all]
+BOOT_UART=1
+BOOT_ORDER=0xf14
+NET_INSTALL_AT_POWER_ON=1
+[exit=0]
+
+$ vcgencmd bootloader_version
+2026/10/30 20:55:54
+version 42d1b6a942a00e0814415cee30d97b90a1ae394b (release)
+timestamp 1793393754
+update-time 1795182997
+capabilities 0x0000007f
+
+[exit=0]
+

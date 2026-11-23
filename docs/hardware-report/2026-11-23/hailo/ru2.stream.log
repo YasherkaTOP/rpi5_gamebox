@@ -1,0 +1,17 @@
+t0 1795198104.275619815
+1795198104.613541648 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:24.612390635Z","message":{"role":"assistant","content":"\""},"done":false}
+1795198104.736569661 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:24.735550939Z","message":{"role":"assistant","content":"\u0417"},"done":false}
+1795198104.857366265 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:24.856321029Z","message":{"role":"assistant","content":"\u0434"},"done":false}
+1795198104.977979514 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:24.976948034Z","message":{"role":"assistant","content":"\u0440\u0430\u0432"},"done":false}
+1795198105.098688171 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.097688149Z","message":{"role":"assistant","content":"\u0441\u0442\u0432"},"done":false}
+1795198105.219208177 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.218206951Z","message":{"role":"assistant","content":"\u0443\u0439"},"done":false}
+1795198105.339621536 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.338629531Z","message":{"role":"assistant","content":"\u0442\u0435"},"done":false}
+1795198105.460166463 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.459181994Z","message":{"role":"assistant","content":","},"done":false}
+1795198105.580650587 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.579667562Z","message":{"role":"assistant","content":" \u0432"},"done":false}
+1795198105.702134529 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.701171186Z","message":{"role":"assistant","content":"\u0438\u043A"},"done":false}
+1795198105.823031504 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.822035240Z","message":{"role":"assistant","content":"\u0442\u043E\u0440"},"done":false}
+1795198105.943823072 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:25.942796573Z","message":{"role":"assistant","content":"\u0438\u043D\u0430"},"done":false}
+1795198106.064457705 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:26.063438853Z","message":{"role":"assistant","content":" \u043D\u0430\u0447\u0438\u043D\u0430"},"done":false}
+1795198106.184885894 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:26.183897074Z","message":{"role":"assistant","content":"\u0435\u0442\u0441\u044F"},"done":false}
+1795198106.305986220 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:26.304972090Z","message":{"role":"assistant","content":"!\""},"done":false}
+1795198106.427013708 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:26.425784616Z","message":{"role":"assistant","content":""},"done":true,"done_reason":"stop","total_duration":2130428239,"eval_count":15}

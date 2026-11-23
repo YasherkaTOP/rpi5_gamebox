@@ -1,0 +1,60 @@
+$ hostnamectl
+ Static hostname: gamebox
+       Icon name: computer
+      Machine ID: d129134888f349dea755c2019e861a61
+         Boot ID: 8b3ddadeb25743c48f4476b45a9f5b85
+Operating System: Debian GNU/Linux 13 (trixie)
+          Kernel: Linux 6.18.60+rpt-rpi-2712
+    Architecture: arm64
+[exit=0]
+
+$ ip -br addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             DOWN           
+wlan0            UP             192.168.0.101/24 fe80::edde:54b8:fab5:8605/64 
+[exit=0]
+
+$ iw dev 2>/dev/null; iw dev wlan0 link 2>/dev/null
+phy#0
+	Unnamed/non-netdev interface
+		wdev 0x2
+		addr 8a:a2:9e:0e:ae:63
+		type P2P-device
+		txpower 31.00 dBm
+	Interface wlan0
+		ifindex 3
+		wdev 0x1
+		addr 88:a2:9e:0e:ae:63
+		ssid TP-Link_42F0
+		type managed
+		channel 1 (2412 MHz), width: 20 MHz, center1: 2412 MHz
+		txpower 31.00 dBm
+Connected to d8:0d:17:e9:42:f0 (on wlan0)
+	SSID: TP-Link_42F0
+	freq: 2412.0
+	RX: 923578 bytes (3885 packets)
+	TX: 267220 bytes (1930 packets)
+	signal: -59 dBm
+	rx bitrate: 39.0 MBit/s
+	tx bitrate: 24.0 MBit/s
+	bss flags: short-slot-time
+	dtim period: 1
+	beacon int: 100
+[exit=0]
+
+$ systemctl is-active avahi-daemon ssh
+active
+active
+[exit=0]
+
+$ avahi-resolve -n gamebox.local 2>&1 || true
+bash: line 1: avahi-resolve: command not found
+[exit=0]
+
+$ sshd -T 2>/dev/null | grep -iE "^(passwordauthentication|pubkeyauthentication|permitrootlogin|kbdinteractiveauthentication) "
+permitrootlogin without-password
+pubkeyauthentication yes
+passwordauthentication yes
+kbdinteractiveauthentication no
+[exit=0]
+

@@ -1,0 +1,241 @@
+$ aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: vc4hdmi0 [vc4-hdmi-0], device 0: MAI PCM i2s-hifi-0 [MAI PCM i2s-hifi-0]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: vc4hdmi1 [vc4-hdmi-1], device 0: MAI PCM i2s-hifi-0 [MAI PCM i2s-hifi-0]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 2: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+[exit=0]
+
+$ aplay -L
+null
+    Discard all samples (playback) or generate zero samples (capture)
+default
+    Default Audio Device
+sysdefault
+    Default Audio Device
+hw:CARD=vc4hdmi0,DEV=0
+    vc4-hdmi-0, MAI PCM i2s-hifi-0
+    Direct hardware device without any conversions
+plughw:CARD=vc4hdmi0,DEV=0
+    vc4-hdmi-0, MAI PCM i2s-hifi-0
+    Hardware device with all software conversions
+default:CARD=vc4hdmi0
+    vc4-hdmi-0, MAI PCM i2s-hifi-0
+    Default Audio Device
+sysdefault:CARD=vc4hdmi0
+    vc4-hdmi-0, MAI PCM i2s-hifi-0
+    Default Audio Device
+hdmi:CARD=vc4hdmi0,DEV=0
+    vc4-hdmi-0, MAI PCM i2s-hifi-0
+    HDMI Audio Output
+dmix:CARD=vc4hdmi0,DEV=0
+    vc4-hdmi-0, MAI PCM i2s-hifi-0
+    Direct sample mixing device
+hw:CARD=vc4hdmi1,DEV=0
+    vc4-hdmi-1, MAI PCM i2s-hifi-0
+    Direct hardware device without any conversions
+plughw:CARD=vc4hdmi1,DEV=0
+    vc4-hdmi-1, MAI PCM i2s-hifi-0
+    Hardware device with all software conversions
+default:CARD=vc4hdmi1
+    vc4-hdmi-1, MAI PCM i2s-hifi-0
+    Default Audio Device
+sysdefault:CARD=vc4hdmi1
+    vc4-hdmi-1, MAI PCM i2s-hifi-0
+    Default Audio Device
+hdmi:CARD=vc4hdmi1,DEV=0
+    vc4-hdmi-1, MAI PCM i2s-hifi-0
+    HDMI Audio Output
+dmix:CARD=vc4hdmi1,DEV=0
+    vc4-hdmi-1, MAI PCM i2s-hifi-0
+    Direct sample mixing device
+hw:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Direct hardware device without any conversions
+plughw:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Hardware device with all software conversions
+default:CARD=Device
+    USB PnP Sound Device, USB Audio
+    Default Audio Device
+sysdefault:CARD=Device
+    USB PnP Sound Device, USB Audio
+    Default Audio Device
+front:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Front output / input
+surround21:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    2.1 Surround output to Front and Subwoofer speakers
+surround40:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    4.0 Surround output to Front and Rear speakers
+surround41:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    4.1 Surround output to Front, Rear and Subwoofer speakers
+surround50:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    5.0 Surround output to Front, Center and Rear speakers
+surround51:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    5.1 Surround output to Front, Center, Rear and Subwoofer speakers
+surround71:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    7.1 Surround output to Front, Center, Side, Rear and Woofer speakers
+iec958:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    IEC958 (S/PDIF) Digital Audio Output
+dmix:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Direct sample mixing device
+[exit=0]
+
+$ arecord -l
+**** List of CAPTURE Hardware Devices ****
+card 2: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+[exit=0]
+
+$ arecord -L
+null
+    Discard all samples (playback) or generate zero samples (capture)
+default
+    Default Audio Device
+sysdefault
+    Default Audio Device
+hw:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Direct hardware device without any conversions
+plughw:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Hardware device with all software conversions
+default:CARD=Device
+    USB PnP Sound Device, USB Audio
+    Default Audio Device
+sysdefault:CARD=Device
+    USB PnP Sound Device, USB Audio
+    Default Audio Device
+front:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Front output / input
+dsnoop:CARD=Device,DEV=0
+    USB PnP Sound Device, USB Audio
+    Direct sample snooping device
+[exit=0]
+
+$ cat /proc/asound/cards
+ 0 [vc4hdmi0       ]: vc4-hdmi - vc4-hdmi-0
+                      vc4-hdmi-0
+ 1 [vc4hdmi1       ]: vc4-hdmi - vc4-hdmi-1
+                      vc4-hdmi-1
+ 2 [Device         ]: USB-Audio - USB PnP Sound Device
+                      C-Media Electronics Inc. USB PnP Sound Device at usb-xhci-hcd.0-1, full speed
+[exit=0]
+
+$ for n in $(awk "/^ *[0-9]+ \[/{print \$1}" /proc/asound/cards); do echo "=== card $n"; amixer -c $n contents; done
+=== card 0
+numid=1,iface=CARD,name='HDMI Jack'
+  ; type=BOOLEAN,access=r-------,values=1
+  : values=off
+numid=5,iface=PCM,name='ELD'
+  ; type=BYTES,access=r--v----,values=128
+  : values=0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+numid=4,iface=PCM,name='IEC958 Playback Default'
+  ; type=IEC958,access=rw------,values=1
+  : values=[AES0=0x04 AES1=0x00 AES2=0x00 AES3=0x01]
+numid=3,iface=PCM,name='IEC958 Playback Mask'
+  ; type=IEC958,access=r-------,values=1
+  : values=[AES0=0xff AES1=0xff AES2=0xff AES3=0xff]
+numid=2,iface=PCM,name='Playback Channel Map'
+  ; type=INTEGER,access=r--v-R--,values=8,min=0,max=36,step=0
+  : values=0,0,0,0,0,0,0,0
+  | container
+    | chmap-fixed=FL,FR
+=== card 1
+numid=1,iface=CARD,name='HDMI Jack'
+  ; type=BOOLEAN,access=r-------,values=1
+  : values=on
+numid=5,iface=PCM,name='ELD'
+  ; type=BYTES,access=r--v----,values=128
+  : values=0x10,0x00,0x07,0x00,0x67,0x10,0x00,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x36,0x09,0x02,0x70,0x4d,0x50,0x49,0x37,0x30,0x30,0x32,0x09,0x07,0x07,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+numid=4,iface=PCM,name='IEC958 Playback Default'
+  ; type=IEC958,access=rw------,values=1
+  : values=[AES0=0x04 AES1=0x00 AES2=0x00 AES3=0x01]
+numid=3,iface=PCM,name='IEC958 Playback Mask'
+  ; type=IEC958,access=r-------,values=1
+  : values=[AES0=0xff AES1=0xff AES2=0xff AES3=0xff]
+numid=2,iface=PCM,name='Playback Channel Map'
+  ; type=INTEGER,access=r--v-R--,values=8,min=0,max=36,step=0
+  : values=0,0,0,0,0,0,0,0
+  | container
+    | chmap-fixed=FL,FR
+=== card 2
+numid=3,iface=MIXER,name='Mic Playback Switch'
+  ; type=BOOLEAN,access=rw------,values=1
+  : values=off
+numid=4,iface=MIXER,name='Mic Playback Volume'
+  ; type=INTEGER,access=rw---R--,values=1,min=0,max=127,step=0
+  : values=0
+  | dBminmax-min=0.00dB,max=23.81dB
+numid=7,iface=MIXER,name='Mic Capture Switch'
+  ; type=BOOLEAN,access=rw------,values=1
+  : values=on
+numid=8,iface=MIXER,name='Mic Capture Volume'
+  ; type=INTEGER,access=rw---R--,values=1,min=0,max=16,step=0
+  : values=16
+  | dBminmax-min=0.00dB,max=23.81dB
+numid=9,iface=MIXER,name='Auto Gain Control'
+  ; type=BOOLEAN,access=rw------,values=1
+  : values=off
+numid=5,iface=MIXER,name='Speaker Playback Switch'
+  ; type=BOOLEAN,access=rw------,values=1
+  : values=on
+numid=6,iface=MIXER,name='Speaker Playback Volume'
+  ; type=INTEGER,access=rw---R--,values=2,min=0,max=151,step=0
+  : values=29,29
+  | dBminmax-min=-28.37dB,max=-0.06dB
+numid=2,iface=PCM,name='Capture Channel Map'
+  ; type=INTEGER,access=r--v-R--,values=1,min=0,max=36,step=0
+  : values=0
+  | container
+    | chmap-fixed=MONO
+numid=1,iface=PCM,name='Playback Channel Map'
+  ; type=INTEGER,access=r--v-R--,values=2,min=0,max=36,step=0
+  : values=0,0
+  | container
+    | chmap-fixed=FL,FR
+[exit=0]
+
+$ for c in /proc/asound/card*; do for s in $c/stream*; do [ -f $s ] && { echo "== $s"; cat $s; }; done; done
+== /proc/asound/card2/stream0
+C-Media Electronics Inc. USB PnP Sound Device at usb-xhci-hcd.0-1, full speed : USB Audio
+
+Playback:
+  Status: Stop
+  Interface 1
+    Altset 1
+    Format: S16_LE
+    Channels: 2
+    Endpoint: 0x01 (1 OUT) (ADAPTIVE)
+    Rates: 48000, 44100
+    Bits: 16
+    Channel map: FL FR
+
+Capture:
+  Status: Stop
+  Interface 2
+    Altset 1
+    Format: S16_LE
+    Channels: 1
+    Endpoint: 0x82 (2 IN) (ADAPTIVE)
+    Rates: 48000, 44100
+    Bits: 16
+    Channel map: MONO
+[exit=1]
+

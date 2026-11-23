@@ -1,0 +1,52 @@
+# Game Box — зафиксированные версии внешних зависимостей.
+# ЧЕРНОВИК блока 1 (снято с устройства 2026-11-23, docs/hardware-report/2026-11-23/collect/).
+# Формат окончательно определяет блок 2; Python-зависимости платформы добавятся туда же (lock-файлы окружений).
+# Системные пакеты (HailoRT, Chromium) в первой версии обновляются вручную (план, раздел 5).
+
+[device]
+board          = "Raspberry Pi 5 Model B Rev 1.1, 8 GB (d04171)"
+eeprom         = "2026-10-30 42d1b6a942a00e0814415cee30d97b90a1ae394b (default)"
+firmware       = "raspi-firmware 1:1.20260915-1; vcgencmd 2026/10/30 42d1b6a9"
+
+[os]
+image          = "Raspberry Pi reference 2026-10-06, pi-gen b2cd98a9, stage4 (с рабочим столом — см. hardware.md)"
+debian         = "13.7 (trixie)"
+kernel         = "6.18.60+rpt-rpi-2712 (linux-image-rpi-2712 1:6.18.60-1+rpt1)"
+python         = "3.13.5"
+systemd        = "257.13-1~deb13u1"
+rpi-swap       = "1.2.4"
+rpi-eeprom     = "28.37-1"
+alsa-utils     = "1.2.14-1+rpt1"
+network-manager = "1.52.1-1+rpt4"
+avahi-daemon   = "0.8-16"
+openssh-server = "1:10.0p1-7+deb13u4"
+
+[hailo]
+# Пакеты Hailo-8 и Hailo-10H несовместимы; ставить только hailo-h10-all.
+hailo-h10-all          = "5.1.1"
+h10-hailort            = "5.1.1"
+h10-hailort-pcie-driver = "5.1.1"      # модуль hailo1x_pci 5.1.1, DKMS
+python3-h10-hailort    = "5.1.1-1"
+firmware               = "5.1.1 (release,app)"
+hailo-gen-ai-model-zoo = "5.1.1"       # hailo-ollama, порт 8000
+hailo-tappas-core      = "5.1.0"
+python3-hailo-tappas   = "5.1.0"
+hailo-models           = "1.0.0-2"     # примеры для зрения, платформой не используются
+
+[models.hailo]
+# Ставятся вручную (deploy/hwcheck/hailo_install_hef.sh): /api/pull без VPN недоступен.
+"qwen2-instruct:1.5b" = { file = "Qwen2-1.5B-Instruct.hef", source = "Hailo Model Zoo (сайт), скачано вручную", size = 1657568559, sha256 = "e84348ba1ecbcb3b5f60defca8e15166241ae1e96ff2db832b8b5998c1f0039d", manifest_base = "qwen2:1.5b" }
+# В манифестах пакета есть, файлов на устройстве нет: qwen2:1.5b (ab056548…e86a), qwen2.5-instruct:1.5b,
+# qwen2.5-coder:1.5b, deepseek_r1_distill_qwen:1.5b, llama3.2:3b.
+
+[ui]
+# Установлены вместе с образом с рабочим столом; выбор киоска — блок 7.
+chromium = "1:156.0.8078.79-1~deb13u1+rpt1"
+labwc    = "0.20.2-1~bpo13+1"
+
+[tools]
+# Нужны только скриптам проверки железа (deploy/hwcheck).
+stress-ng     = "0.19.02-1"
+edid-decode   = "0.1~git20241119.5332a3b-1"
+python3-numpy = "1:2.2.4+ds-1"
+python3-evdev = "1.9.1-1"

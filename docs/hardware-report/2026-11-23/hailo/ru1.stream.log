@@ -1,0 +1,6 @@
+t0 1795198094.481687406
+1795198103.750839754 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:23.749643435Z","message":{"role":"assistant","content":"\u0411"},"done":false}
+1795198103.874038662 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:23.872940788Z","message":{"role":"assistant","content":"\u0435\u043B"},"done":false}
+1795198103.994412843 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:23.993395472Z","message":{"role":"assistant","content":"\u043E\u0435"},"done":false}
+1795198104.114833275 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:24.113888280Z","message":{"role":"assistant","content":"."},"done":false}
+1795198104.235760188 {"model":"qwen2-instruct:1.5b","created_at":"2026-11-20T18:08:24.234504102Z","message":{"role":"assistant","content":""},"done":true,"done_reason":"stop","total_duration":807303498,"eval_count":4}

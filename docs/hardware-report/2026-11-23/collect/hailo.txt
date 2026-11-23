@@ -1,0 +1,102 @@
+$ hailortcli --version
+HailoRT-CLI version 5.1.1
+[exit=0]
+
+$ hailortcli fw-control identify
+Executing on device: 0001:01:00.0
+Identifying board
+Control Protocol Version: 2
+Firmware Version: 5.1.1 (release,app)
+Logger Version: 0
+Device Architecture: HAILO10H
+
+[exit=0]
+
+$ dpkg -l | grep -iE "hailo|hailort"
+ii  h10-hailort                           5.1.1                                arm64        AI acceleration runtime library for Hailo hardware
+ii  h10-hailort-pcie-driver               5.1.1                                all          Hailo PCIe driver and firmware for AI hardware acceleration
+ii  hailo-gen-ai-model-zoo                5.1.1                                arm64        Hailo Model Zoo Gen AI
+ii  hailo-h10-all                         5.1.1                                all          Hailo-10 support (metapackage)
+ii  hailo-models                          1.0.0-2                              all          AI models for Hailo modules
+ii  hailo-tappas-core                     5.1.0                                arm64        Core components of the Hailo TAPPAS platform
+ii  python3-h10-hailort                   5.1.1-1                              arm64        HailoRT Python API, which wraps the runtime library
+ii  python3-hailo-tappas                  5.1.0                                arm64        Python binding for tappas
+ii  rpicam-apps-hailo-postprocess         1.15.0-1                             arm64        Raspberry Pi AI HAT+ post-processing plugin for rpicam-apps
+[exit=0]
+
+$ ls -l /dev/hailo* 
+crw-rw-rw- 1 root root 509, 0 Nov 20 21:39 /dev/hailo0
+[exit=0]
+
+$ lsmod | grep -i hailo
+hailo1x_pci           147456  0
+[exit=0]
+
+$ for m in $(lsmod | awk "/hailo/{print \$1}"); do modinfo $m | grep -E "^(filename|version|vermagic|name):"; done
+filename:       /lib/modules/6.18.60+rpt-rpi-2712/updates/dkms/hailo1x_pci.ko.xz
+version:        5.1.1
+name:           hailo1x_pci
+vermagic:       6.18.60+rpt-rpi-2712 SMP preempt mod_unload modversions aarch64
+[exit=0]
+
+$ dmesg | grep -i hailo
+[    4.011689] hailo1x_pci: loading out-of-tree module taints kernel.
+[    4.012183] hailo1x: Init module. driver version 5.1.1
+[    4.012249] hailo1x 0001:01:00.0: Probing on: 1e60:45c4...
+[    4.012253] hailo1x 0001:01:00.0: Probing: Allocate memory for device extension, 11256
+[    4.012267] hailo1x 0001:01:00.0: enabling device (0000 -> 0002)
+[    4.012272] hailo1x 0001:01:00.0: Probing: Device enabled
+[    4.012286] hailo1x 0001:01:00.0: Probing: mapped bar 0 - 00000000967bfbd1 16384
+[    4.012290] hailo1x 0001:01:00.0: Probing: mapped bar 2 - 00000000b8696306 4096
+[    4.012293] hailo1x 0001:01:00.0: Probing: mapped bar 4 - 000000001ddf306b 16384
+[    4.012296] hailo1x 0001:01:00.0: Probing: Setting max_desc_page_size to 4096, (PAGE_SIZE=16384)
+[    4.012303] hailo1x 0001:01:00.0: Probing: Enabled 64 bit dma
+[    4.012306] hailo1x 0001:01:00.0: Disabling ASPM L0s 
+[    4.012308] hailo1x 0001:01:00.0: Successfully disabled ASPM L0s 
+[    4.012414] hailo1x 0001:01:00.0: Writing file hailo/hailo10h/customer_certificate.bin
+[    4.049325] hailo1x 0001:01:00.0: File hailo/hailo10h/customer_certificate.bin written successfully
+[    4.049334] hailo1x 0001:01:00.0: Writing file hailo/hailo10h/scu_fw.bin
+[    4.113469] hailo1x 0001:01:00.0: File hailo/hailo10h/scu_fw.bin written successfully
+[    4.169121] hailo1x 0001:01:00.0: Board SKU-ID is: 6
+[    4.169136] hailo1x 0001:01:00.0: Writing file hailo/hailo10h/u-boot-6.dtb.signed
+[    4.179983] hailo1x 0001:01:00.0: File hailo/hailo10h/u-boot-6.dtb.signed written successfully
+[    4.275021] hailo1x 0001:01:00.0: Reading firmware file hailo/hailo10h/u-boot-spl.bin
+[    4.284021] hailo1x 0001:01:00.0: Reading firmware file hailo/hailo10h/u-boot-tfa.itb
+[    4.284065] hailo1x 0001:01:00.0: Reading firmware file hailo/hailo10h/fitImage
+[    4.460398] hailo1x 0001:01:00.0: Reading firmware file hailo/hailo10h/image-fs
+[    5.307438] hailo1x 0001:01:00.0: Firmware file programmed successfully
+[    5.307444] hailo1x 0001:01:00.0: Firmware file index 0 programmed successfully
+[    5.310128] hailo1x 0001:01:00.0: Firmware file programmed successfully
+[    5.310131] hailo1x 0001:01:00.0: Firmware file index 2 programmed successfully
+[    5.327745] hailo1x 0001:01:00.0: Firmware file programmed successfully
+[    5.327750] hailo1x 0001:01:00.0: Firmware file index 3 programmed successfully
+[    5.327752] hailo1x 0001:01:00.0: Firmware batch programming completed for stage 2
+[    5.445441] hailo1x 0001:01:00.0: vDMA transfer completed, triggering boot
+[    7.690214] hailo1x 0001:01:00.0: SOC Firmware Batch loaded successfully
+[    7.690219] hailo1x 0001:01:00.0: Firmware loaded in 3677 ms
+[    7.701636] hailo1x 0001:01:00.0: Probing: Added board 1e60-45c4, /dev/hailo0
+[exit=0]
+
+$ curl -s --max-time 5 http://localhost:8000/hailo/v1/list || echo "hailo-ollama не запущен"
+{"models":["deepseek_r1_distill_qwen:1.5b","llama3.2:3b","qwen2-instruct:1.5b","qwen2.5-coder:1.5b","qwen2.5-instruct:1.5b","qwen2:1.5b"]}[exit=0]
+
+$ find /usr /opt /home /root /var -xdev -type f \( -name "*.hef" -o -name "*.gguf" \) -size +5M -printf "%s\t%p\n" 2>/dev/null
+5609495	/usr/share/hailo-models/yolov6n_h8.hef
+7763282	/usr/share/hailo-models/yolov5n_seg_h8l_mz.hef
+45150471	/usr/share/hailo-models/resnet_v1_50_h8l.hef
+14574566	/usr/share/hailo-models/yolov6n_h8l.hef
+5774088	/usr/share/hailo-models/scrfd_2.5g_h8l.hef
+23499480	/usr/share/hailo-models/resnet_v1_50_h10.hef
+27692667	/usr/share/hailo-models/yolov5s_personface_h8l.hef
+13645296	/usr/share/hailo-models/yolov8s_pose_h10.hef
+21768656	/usr/share/hailo-models/yolov8m_h10.hef
+29356696	/usr/share/hailo-models/yolov8m_pose_h10.hef
+24551115	/usr/share/hailo-models/yolov8s_pose_h8l_pi.hef
+10432255	/usr/share/hailo-models/yolov8s_h8.hef
+27992480	/usr/share/hailo-models/yolov11m_h10.hef
+22412459	/usr/share/hailo-models/yolox_s_leaky_h8l_rpi.hef
+10156366	/usr/share/hailo-models/yolov8s_pose_h8.hef
+36591775	/usr/share/hailo-models/yolov8s_h8l.hef
+1657568559	/home/admin/Qwen2-1.5B-Instruct.hef
+[exit=0]
+

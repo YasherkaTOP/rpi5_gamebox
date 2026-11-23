@@ -1,0 +1,45 @@
+{
+  "rec_dev": "plughw:CARD=Device,DEV=0",
+  "card_id": "Device",
+  "usb_id": "08bb:2902",
+  "distance_m": 0.5,
+  "fan": {
+    "how": "принудительно",
+    "rpm_start": 6365,
+    "rpm_noise": 8436,
+    "rpm_speech": 9247,
+    "rpm_before_noise": 6962
+  },
+  "noise": {
+    "file": "noise_fan.wav",
+    "seconds": 10.0,
+    "peak_dbfs": -21.8,
+    "clipped_samples": 0,
+    "frame_db_p10": -38.5,
+    "frame_db_median": -37.8,
+    "frame_db_p95": -37.2
+  },
+  "speech": {
+    "file": "speech_05m.wav",
+    "seconds": 15.0,
+    "peak_dbfs": -17.7,
+    "clipped_samples": 0,
+    "frame_db_p10": -38.5,
+    "frame_db_median": -37.7,
+    "frame_db_p95": -36.3
+  },
+  "loud": {
+    "file": "loud_05m.wav",
+    "seconds": 6.0,
+    "peak_dbfs": -18.1,
+    "clipped_samples": 0,
+    "frame_db_p10": -38.5,
+    "frame_db_median": -37.5,
+    "frame_db_p95": -33.9
+  },
+  "snr_db_p95_vs_noise_median": 1.5,
+  "verdict": [
+    "клиппинга нет",
+    "речь выше шума всего на 1.5 дБ — ПЛОХО"
+  ]
+}

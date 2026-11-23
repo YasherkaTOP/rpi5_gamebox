@@ -1,0 +1,23 @@
+$ id gamebox
+uid=999(gamebox) gid=984(gamebox) groups=984(gamebox),29(audio),44(video),996(input),992(render)
+[exit=0]
+
+$ ls -ld /opt/gamebox /var/lib/gamebox /var/lib/gamebox/* /etc/gamebox
+drwxr-x---  2 root    gamebox 4096 Nov 20 21:31 /etc/gamebox
+drwxr-xr-x  2 root    root    4096 Nov 20 21:31 /opt/gamebox
+drwxr-x--- 11 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/audio_debug
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/db
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/games
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/logs
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/models
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/packs
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/personas
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/resources
+drwxr-x---  2 gamebox gamebox 4096 Nov 20 21:31 /var/lib/gamebox/tts_cache
+[exit=0]
+
+$ id admin
+uid=1000(admin) gid=1000(admin) groups=1000(admin),4(adm),20(dialout),24(cdrom),27(sudo),29(audio),44(video),46(plugdev),60(games),100(users),996(input),992(render),102(netdev),989(spi),988(i2c),986(gpio),984(gamebox)
+[exit=0]
+

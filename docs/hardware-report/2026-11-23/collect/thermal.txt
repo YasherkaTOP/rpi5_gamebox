@@ -1,0 +1,16 @@
+$ vcgencmd measure_temp
+temp=48.8'C
+[exit=0]
+
+$ vcgencmd measure_clock arm
+frequency(0)=2400027136
+[exit=0]
+
+$ cat /sys/devices/platform/cooling_fan/hwmon/*/fan1_input
+3509
+[exit=0]
+
+$ for c in /sys/class/thermal/cooling_device*; do echo "$c $(cat $c/type) $(cat $c/cur_state)/$(cat $c/max_state)"; done
+/sys/class/thermal/cooling_device0 pwm-fan 1/4
+[exit=0]
+

@@ -1,0 +1,36 @@
+[32m I [0m|2026-11-20 21:08:13 1795198093033681| MyApp:Server running on port 8000
+[32m I [0m|2026-11-20 21:08:13 1795198093037684| list_models:got 6 models in store
+[32m I [0m|2026-11-20 21:08:13 1795198093048751| list_models:got 6 models in store
+[32m I [0m|2026-11-20 21:08:14 1795198094492094| handle_completion:Got model /usr/share/hailo-ollama/models/blob/sha256_e84348ba1ecbcb3b5f60defca8e15166241ae1e96ff2db832b8b5998c1f0039d
+[32m I [0m|2026-11-20 21:08:14 1795198094492128| GenerationThread:got prompt <|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Ответь одним коротким предложением по-русски: какого цвета небо днём?<|im_end|>
+<|im_start|>assistant
+
+[32m I [0m|2026-11-20 21:08:16 1795198096524862| GenerationThread:replacing model to /usr/share/hailo-ollama/models/blob/sha256_e84348ba1ecbcb3b5f60defca8e15166241ae1e96ff2db832b8b5998c1f0039d
+[32m I [0m|2026-11-20 21:08:24 1795198104235082| generation_context:got notified
+[32m I [0m|2026-11-20 21:08:24 1795198104288348| handle_completion:Got model /usr/share/hailo-ollama/models/blob/sha256_e84348ba1ecbcb3b5f60defca8e15166241ae1e96ff2db832b8b5998c1f0039d
+[32m I [0m|2026-11-20 21:08:24 1795198104288391| GenerationThread:got prompt <|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Придумай короткое приветствие ведущего викторины, не длиннее двенадцати слов.<|im_end|>
+<|im_start|>assistant
+
+[32m I [0m|2026-11-20 21:08:26 1795198106480010| handle_completion:Got model /usr/share/hailo-ollama/models/blob/sha256_e84348ba1ecbcb3b5f60defca8e15166241ae1e96ff2db832b8b5998c1f0039d
+[32m I [0m|2026-11-20 21:08:26 1795198106480054| GenerationThread:got prompt <|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Сколько будет два плюс три? Ответь одним словом.<|im_end|>
+<|im_start|>assistant
+
+[32m I [0m|2026-11-20 21:13:14 1795198394492202| generation_context:timeout expired
+[32m I [0m|2026-11-20 21:13:26 1795198406480115| generation_context:timeout expired
+[32m I [0m|2026-11-20 21:13:26 1795198406480159| generation_context:reset issued
+[32m I [0m|2026-11-20 21:37:49 1795199869142512| MyApp:Stop signal received, please wait for server shutdown
+[32m I [0m|2026-11-20 21:37:49 1795199869142572| generation_context:stop received
+
+Environment:
+objectsCount = 0
+objectsCreated = 183
+

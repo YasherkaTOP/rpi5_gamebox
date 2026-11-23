@@ -1,0 +1,25 @@
+$ lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 08bb:2902 Texas Instruments PCM2902 Audio Codec
+Bus 001 Device 003: ID 0484:5750 Specialix MPI7003
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+[exit=0]
+
+$ lsusb -t
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Audio, Driver=snd-usb-audio, 12M
+    |__ Port 001: Dev 002, If 1, Class=Audio, Driver=snd-usb-audio, 12M
+    |__ Port 001: Dev 002, If 2, Class=Audio, Driver=snd-usb-audio, 12M
+    |__ Port 001: Dev 002, If 3, Class=Human Interface Device, Driver=usbhid, 12M
+    |__ Port 002: Dev 003, If 0, Class=Human Interface Device, Driver=usbhid, 12M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+/:  Bus 003.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 480M
+/:  Bus 004.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+[exit=0]
+
+$ for c in /proc/asound/card*; do [ -f $c/usbid ] && echo "$c id=$(cat $c/id) usbid=$(cat $c/usbid)"; done
+/proc/asound/card2 id=Device usbid=08bb:2902
+[exit=1]
+

@@ -1,0 +1,51 @@
+$ journalctl -b -p warning --no-pager | tail -200
+Nov 20 21:39:21 gamebox systemd-sysctl[365]: Couldn't write '1' to 'kernel/unprivileged_userns_clone', ignoring: No such file or directory
+Nov 20 21:39:21 gamebox systemd-udevd[399]: Configuration file /usr/lib/udev/rules.d/51-hailo-udev.rules is marked executable. Please remove executable permission bits. Proceeding anyway.
+Nov 20 21:39:22 gamebox systemd-udevd[399]: /usr/lib/udev/rules.d/90-alsa-restore.rules:18 GOTO="alsa_restore_std" has no matching label, ignoring.
+Nov 20 21:39:22 gamebox systemd-udevd[399]: /usr/lib/udev/rules.d/90-alsa-restore.rules:18 The line has no effect any more, dropping.
+Nov 20 21:39:22 gamebox systemd-udevd[399]: /usr/lib/udev/rules.d/90-alsa-restore.rules:22 GOTO="alsa_restore_std" has no matching label, ignoring.
+Nov 20 21:39:22 gamebox systemd-udevd[399]: /usr/lib/udev/rules.d/90-alsa-restore.rules:22 The line has no effect any more, dropping.
+Nov 20 21:39:22 gamebox kernel: hailo1x_pci: loading out-of-tree module taints kernel.
+Nov 20 21:39:22 gamebox kernel: hid-multitouch 0003:0484:5750.0002: Returned feature report did not match the request
+Nov 20 21:39:23 gamebox blkmapd[664]: open pipe file /run/rpc_pipefs/nfs/blocklayout failed: No such file or directory
+Nov 20 21:39:26 gamebox kernel: hci_uart_bcm serial0-0: supply vbat not found, using dummy regulator
+Nov 20 21:39:26 gamebox kernel: hci_uart_bcm serial0-0: supply vddio not found, using dummy regulator
+Nov 20 21:39:26 gamebox kernel: ieee80211 phy0: brcmf_cfg80211_reg_notifier: Firmware rejected country setting
+Nov 20 21:39:26 gamebox (uetoothd)[854]: bluetooth.service: ConfigurationDirectory 'bluetooth' already exists but the mode is different. (File system: 755 ConfigurationDirectoryMode: 555)
+Nov 20 21:39:27 gamebox generate[898]: Permissions for /lib/netplan/00-network-manager-all.yaml are too open. Netplan configuration should NOT be accessible by others.
+Nov 20 21:39:27 gamebox wpa_supplicant[848]: nl80211: kernel reports: Registration to specific type not supported
+Nov 20 21:39:28 gamebox pipewire[1059]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox pipewire[1059]: mod.rt: RTKit does not give us MaxRealtimePriority, using 1
+Nov 20 21:39:28 gamebox pipewire-pulse[1064]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox pipewire-pulse[1064]: mod.rt: RTKit does not give us MaxRealtimePriority, using 1
+Nov 20 21:39:28 gamebox wireplumber[1061]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox wireplumber[1061]: mod.rt: RTKit does not give us MaxRealtimePriority, using 1
+Nov 20 21:39:28 gamebox pipewire[1059]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox pipewire[1059]: mod.rt: RTKit does not give us MinNiceLevel, using 0
+Nov 20 21:39:28 gamebox pipewire[1059]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox pipewire-pulse[1064]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox pipewire[1059]: mod.rt: RTKit does not give us RTTimeUSecMax, using -1
+Nov 20 21:39:28 gamebox pipewire-pulse[1064]: mod.rt: RTKit does not give us MinNiceLevel, using 0
+Nov 20 21:39:28 gamebox wireplumber[1061]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox wireplumber[1061]: mod.rt: RTKit does not give us MinNiceLevel, using 0
+Nov 20 21:39:28 gamebox wireplumber[1061]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox wireplumber[1061]: mod.rt: RTKit does not give us RTTimeUSecMax, using -1
+Nov 20 21:39:28 gamebox pipewire-pulse[1064]: mod.rt: RTKit error: org.freedesktop.DBus.Error.ServiceUnknown
+Nov 20 21:39:28 gamebox pipewire-pulse[1064]: mod.rt: RTKit does not give us RTTimeUSecMax, using -1
+Nov 20 21:39:28 gamebox wireplumber[1061]: default: Failed to get percentage from UPower: org.freedesktop.DBus.Error.NameHasNoOwner
+Nov 20 21:39:30 gamebox kernel: ieee80211 phy0: brcmf_cfg80211_reg_notifier: Firmware rejected country setting
+Nov 20 21:39:31 gamebox wpa_supplicant[848]: bgscan simple: Failed to enable signal strength monitoring
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.Lockdown as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.RealtimeKit1 was not provided by any .service files
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.RealtimeKit1 was not provided by any .service files
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Failed to load RealtimeKit property: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.RealtimeKit1 was not provided by any .service files
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.FileChooser as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.AppChooser as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.Print as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.Notification as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.Access as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.Account as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.Email as a last-resort fallback
+Nov 20 21:39:31 gamebox xdg-desktop-por[1281]: Choosing gtk.portal for org.freedesktop.impl.portal.DynamicLauncher as a last-resort fallback
+[exit=0]
+

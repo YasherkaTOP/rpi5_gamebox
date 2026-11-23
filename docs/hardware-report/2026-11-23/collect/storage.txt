@@ -1,0 +1,54 @@
+$ lsblk -o NAME,MODEL,SIZE,TRAN,FSTYPE,MOUNTPOINT,PARTUUID
+NAME        MODEL   SIZE TRAN FSTYPE MOUNTPOINT     PARTUUID
+loop0                 2G      swap                  
+mmcblk0             233G mmc                        
+├─mmcblk0p1         512M mmc  vfat   /boot/firmware dc394cb7-01
+└─mmcblk0p2       232.5G mmc  ext4   /              dc394cb7-02
+zram0                 2G      swap   [SWAP]         
+[exit=0]
+
+$ findmnt -no SOURCE,FSTYPE,OPTIONS /
+/dev/mmcblk0p2 ext4 rw,noatime
+[exit=0]
+
+$ cat /etc/fstab
+proc            /proc           proc    defaults          0       0
+PARTUUID=dc394cb7-01  /boot/firmware  vfat    defaults          0       2
+PARTUUID=dc394cb7-02  /               ext4    defaults,noatime  0       1
+[exit=0]
+
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            3.9G     0  3.9G   0% /dev
+tmpfs           1.6G   14M  1.6G   1% /run
+/dev/mmcblk0p2  229G   12G  208G   6% /
+tmpfs           4.0G  336K  4.0G   1% /dev/shm
+tmpfs           5.0M   64K  5.0M   2% /run/lock
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           4.0G   48K  4.0G   1% /tmp
+/dev/mmcblk0p1  505M   80M  426M  16% /boot/firmware
+tmpfs           806M  256K  806M   1% /run/user/1000
+tmpfs           1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyAMA10.service
+[exit=0]
+
+$ tune2fs -l "$(findmnt -no SOURCE /)" | grep -iE "features|mount options|state|block size|Reserved block count"
+Filesystem features:      has_journal ext_attr resize_inode dir_index orphan_file filetype needs_recovery extent flex_bg metadata_csum_seed sparse_super large_file dir_nlink extra_isize metadata_csum orphan_present
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Reserved block count:     2451539
+Block size:               4096
+[exit=0]
+
+$ lsusb -t
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Audio, Driver=snd-usb-audio, 12M
+    |__ Port 001: Dev 002, If 1, Class=Audio, Driver=snd-usb-audio, 12M
+    |__ Port 001: Dev 002, If 2, Class=Audio, Driver=snd-usb-audio, 12M
+    |__ Port 001: Dev 002, If 3, Class=Human Interface Device, Driver=usbhid, 12M
+    |__ Port 002: Dev 003, If 0, Class=Human Interface Device, Driver=usbhid, 12M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+/:  Bus 003.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/2p, 480M
+/:  Bus 004.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+[exit=0]
+

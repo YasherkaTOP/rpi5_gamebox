@@ -1,0 +1,65 @@
+$ systemd-analyze
+Startup finished in 2.097s (kernel) + 13.438s (userspace) = 15.536s 
+graphical.target reached after 7.492s in userspace.
+[exit=0]
+
+$ systemd-analyze blame | head -30
+5.973s NetworkManager-wait-online.service
+3.193s apt-daily-upgrade.service
+2.316s systemd-binfmt.service
+2.293s proc-sys-fs-binfmt_misc.mount
+1.329s NetworkManager.service
+1.281s systemd-fsck@dev-disk-by\x2dpartuuid-dc394cb7\x2d01.service
+ 912ms cloud-init-main.service
+ 770ms e2scrub_reap.service
+ 645ms rpi-eeprom-update.service
+ 644ms accounts-daemon.service
+ 635ms udisks2.service
+ 523ms dev-mmcblk0p2.device
+ 420ms rpi-resize-swap-file.service
+ 313ms avahi-daemon.service
+ 268ms cloud-init-local.service
+ 263ms dbus.service
+ 254ms wpa_supplicant.service
+ 240ms rp1-test.service
+ 231ms glamor-test.service
+ 222ms user@1000.service
+ 199ms plymouth-start.service
+ 189ms rpi-setup-loop@var-swap.service
+ 176ms dpkg-db-backup.service
+ 174ms polkit.service
+ 173ms systemd-udev-trigger.service
+ 172ms lightdm.service
+ 169ms keyboard-setup.service
+ 162ms plymouth-quit-wait.service
+ 150ms systemd-udevd.service
+ 145ms bluetooth.service
+[exit=0]
+
+$ systemd-analyze critical-chain
+The time when unit became active or started is printed after the "@" character.
+The time the unit took to start is printed after the "+" character.
+
+graphical.target @7.492s
+└─lightdm.service @7.319s +172ms
+  └─systemd-user-sessions.service @7.293s +25ms
+    └─network.target @7.283s
+      └─NetworkManager.service @5.952s +1.329s
+        └─dbus.service @5.686s +263ms
+          └─basic.target @5.628s
+            └─sockets.target @5.628s
+              └─systemd-hostnamed.socket @5.628s
+                └─sysinit.target @5.611s
+                  └─systemd-binfmt.service @3.294s +2.316s
+                    └─proc-sys-fs-binfmt_misc.mount @3.311s +2.293s
+                      └─systemd-journald.socket @1.217s
+                        └─-.mount @1.172s
+                          └─-.slice @1.172s
+[exit=0]
+
+$ systemctl --failed
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+[exit=0]
+
