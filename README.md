@@ -16,11 +16,9 @@
 
 ```
 docs/
-  spec.md, plan.md          спецификация и план с журналом
   hardware.md               паспорт железа
   device-setup.md           первичная настройка и проверки
   hardware-report/<дата>/   сырые отчёты со скриптов проверки
-  blocks/                   декомпозиции блоков (с блока 2)
 deploy/hwcheck/             скрипты проверки железа
 versions.lock
 ```
