@@ -1,0 +1,17 @@
+# ШАБЛОН блока 2. Не устанавливать до появления цикла ядра (блоки 7/9).
+[Unit]
+Description=Game Box core
+After=network.target gamebox-llm.service
+
+[Service]
+Type=simple
+User=gamebox
+Group=gamebox
+ExecStart=/opt/gamebox/current/.venv/bin/gamebox-core --config /etc/gamebox/config.toml
+Restart=on-failure
+RestartSec=2
+RuntimeDirectory=gamebox
+RuntimeDirectoryMode=0750
+
+[Install]
+WantedBy=multi-user.target

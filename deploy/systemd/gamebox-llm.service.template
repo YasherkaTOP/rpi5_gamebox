@@ -1,0 +1,17 @@
+# ШАБЛОН блока 2. Не устанавливать до реализации сервиса (блок 4).
+[Unit]
+Description=Game Box LLM backend
+After=dev-hailo0.device
+
+[Service]
+Type=simple
+User=gamebox
+Group=gamebox
+ExecStart=/opt/gamebox/current/.venv/bin/gamebox-llm --config /etc/gamebox/config.toml
+Restart=on-failure
+RestartSec=2
+RuntimeDirectory=gamebox
+RuntimeDirectoryMode=0750
+
+[Install]
+WantedBy=multi-user.target

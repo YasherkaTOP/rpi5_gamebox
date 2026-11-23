@@ -1,0 +1,16 @@
+# ШАБЛОН блока 2. Не устанавливать до выбора и настройки киоска (блок 7).
+[Unit]
+Description=Game Box kiosk
+After=gamebox-core.service
+
+[Service]
+Type=simple
+User=gamebox
+Group=gamebox
+ExecStart=/opt/gamebox/current/deploy/kiosk.sh
+Restart=on-failure
+RestartSec=2
+Environment=GAMEBOX_UI_URL=http://localhost
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,386 @@
+{
+  "$defs": {
+    "Api": {
+      "additionalProperties": false,
+      "properties": {
+        "bind": {
+          "default": "127.0.0.1",
+          "title": "Bind",
+          "type": "string"
+        },
+        "port": {
+          "default": 8080,
+          "maximum": 65535,
+          "minimum": 1,
+          "title": "Port",
+          "type": "integer"
+        },
+        "request_max_bytes": {
+          "default": 100000000,
+          "exclusiveMinimum": 0,
+          "title": "Request Max Bytes",
+          "type": "integer"
+        }
+      },
+      "title": "Api",
+      "type": "object"
+    },
+    "Asr": {
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "const": "ru",
+          "default": "ru",
+          "title": "Language",
+          "type": "string"
+        },
+        "model": {
+          "default": "",
+          "title": "Model",
+          "type": "string"
+        }
+      },
+      "title": "Asr",
+      "type": "object"
+    },
+    "Audio": {
+      "additionalProperties": false,
+      "properties": {
+        "capture_sample_rate": {
+          "default": 48000,
+          "exclusiveMinimum": 0,
+          "title": "Capture Sample Rate",
+          "type": "integer"
+        },
+        "channels": {
+          "default": 1,
+          "maximum": 1,
+          "minimum": 1,
+          "title": "Channels",
+          "type": "integer"
+        },
+        "input_device": {
+          "default": "plughw:CARD=Device,DEV=0",
+          "title": "Input Device",
+          "type": "string"
+        },
+        "output_device": {
+          "default": "hdmi:CARD=vc4hdmi1,DEV=0",
+          "title": "Output Device",
+          "type": "string"
+        },
+        "pre_roll_ms": {
+          "default": 300,
+          "minimum": 0,
+          "title": "Pre Roll Ms",
+          "type": "integer"
+        },
+        "sample_rate": {
+          "default": 16000,
+          "exclusiveMinimum": 0,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "volume": {
+          "default": 0.6,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Volume",
+          "type": "number"
+        }
+      },
+      "title": "Audio",
+      "type": "object"
+    },
+    "Engines": {
+      "additionalProperties": false,
+      "properties": {
+        "asr": {
+          "const": "fake",
+          "default": "fake",
+          "title": "Asr",
+          "type": "string"
+        },
+        "embedder": {
+          "const": "fake",
+          "default": "fake",
+          "title": "Embedder",
+          "type": "string"
+        },
+        "llm": {
+          "const": "fake",
+          "default": "fake",
+          "title": "Llm",
+          "type": "string"
+        },
+        "tts": {
+          "const": "fake",
+          "default": "fake",
+          "title": "Tts",
+          "type": "string"
+        },
+        "vad": {
+          "const": "fake",
+          "default": "fake",
+          "title": "Vad",
+          "type": "string"
+        }
+      },
+      "title": "Engines",
+      "type": "object"
+    },
+    "Llm": {
+      "additionalProperties": false,
+      "properties": {
+        "context_tokens": {
+          "default": 2048,
+          "exclusiveMinimum": 0,
+          "title": "Context Tokens",
+          "type": "integer"
+        },
+        "max_tokens": {
+          "default": 40,
+          "exclusiveMinimum": 0,
+          "title": "Max Tokens",
+          "type": "integer"
+        },
+        "model": {
+          "default": "",
+          "title": "Model",
+          "type": "string"
+        },
+        "prompt_budget_tokens": {
+          "default": 1000,
+          "exclusiveMinimum": 0,
+          "title": "Prompt Budget Tokens",
+          "type": "integer"
+        },
+        "request_timeout_s": {
+          "default": 30.0,
+          "exclusiveMinimum": 0.0,
+          "title": "Request Timeout S",
+          "type": "number"
+        },
+        "temperature": {
+          "default": 0.0,
+          "minimum": 0.0,
+          "title": "Temperature",
+          "type": "number"
+        }
+      },
+      "title": "Llm",
+      "type": "object"
+    },
+    "Logging": {
+      "additionalProperties": false,
+      "properties": {
+        "backup_count": {
+          "default": 5,
+          "minimum": 0,
+          "title": "Backup Count",
+          "type": "integer"
+        },
+        "level": {
+          "default": "info",
+          "enum": [
+            "debug",
+            "info",
+            "warning",
+            "error"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "max_bytes": {
+          "default": 10000000,
+          "exclusiveMinimum": 0,
+          "title": "Max Bytes",
+          "type": "integer"
+        }
+      },
+      "title": "Logging",
+      "type": "object"
+    },
+    "Paths": {
+      "additionalProperties": false,
+      "description": "Все данные §4.1 выводятся из одного корня; относительные пути решает load_config.",
+      "properties": {
+        "root": {
+          "default": "var",
+          "format": "path",
+          "title": "Root",
+          "type": "string"
+        },
+        "runtime": {
+          "default": "var\\run",
+          "format": "path",
+          "title": "Runtime",
+          "type": "string"
+        }
+      },
+      "title": "Paths",
+      "type": "object"
+    },
+    "Tts": {
+      "additionalProperties": false,
+      "properties": {
+        "cache_max_bytes": {
+          "default": 2000000000,
+          "minimum": 0,
+          "title": "Cache Max Bytes",
+          "type": "integer"
+        },
+        "rate": {
+          "default": 1.0,
+          "exclusiveMinimum": 0.0,
+          "title": "Rate",
+          "type": "number"
+        },
+        "sentence_min_chars": {
+          "default": 20,
+          "minimum": 0,
+          "title": "Sentence Min Chars",
+          "type": "integer"
+        },
+        "voice": {
+          "default": "irina",
+          "title": "Voice",
+          "type": "string"
+        }
+      },
+      "title": "Tts",
+      "type": "object"
+    },
+    "Ui": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "default": 600,
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "min_text_px": {
+          "default": 22,
+          "exclusiveMinimum": 0,
+          "title": "Min Text Px",
+          "type": "integer"
+        },
+        "min_touch_px": {
+          "default": 56,
+          "exclusiveMinimum": 0,
+          "title": "Min Touch Px",
+          "type": "integer"
+        },
+        "static_dir": {
+          "default": "ui\\dist",
+          "format": "path",
+          "title": "Static Dir",
+          "type": "string"
+        },
+        "width": {
+          "default": 1024,
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "title": "Ui",
+      "type": "object"
+    },
+    "Vad": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_ms": {
+          "default": 32,
+          "exclusiveMinimum": 0,
+          "title": "Frame Ms",
+          "type": "integer"
+        },
+        "max_rejected": {
+          "default": 3,
+          "exclusiveMinimum": 0,
+          "title": "Max Rejected",
+          "type": "integer"
+        },
+        "min_speech_ms": {
+          "default": 250,
+          "exclusiveMinimum": 0,
+          "title": "Min Speech Ms",
+          "type": "integer"
+        },
+        "silence_long_ms": {
+          "default": 1200,
+          "exclusiveMinimum": 0,
+          "title": "Silence Long Ms",
+          "type": "integer"
+        },
+        "silence_phrase_ms": {
+          "default": 850,
+          "exclusiveMinimum": 0,
+          "title": "Silence Phrase Ms",
+          "type": "integer"
+        },
+        "silence_word_ms": {
+          "default": 500,
+          "exclusiveMinimum": 0,
+          "title": "Silence Word Ms",
+          "type": "integer"
+        },
+        "threshold": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Threshold",
+          "type": "number"
+        }
+      },
+      "title": "Vad",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "api": {
+      "$ref": "#/$defs/Api"
+    },
+    "asr": {
+      "$ref": "#/$defs/Asr"
+    },
+    "audio": {
+      "$ref": "#/$defs/Audio"
+    },
+    "engines": {
+      "$ref": "#/$defs/Engines"
+    },
+    "llm": {
+      "$ref": "#/$defs/Llm"
+    },
+    "logging": {
+      "$ref": "#/$defs/Logging"
+    },
+    "paths": {
+      "$ref": "#/$defs/Paths"
+    },
+    "profile": {
+      "default": "dev",
+      "enum": [
+        "device",
+        "dev"
+      ],
+      "title": "Profile",
+      "type": "string"
+    },
+    "tts": {
+      "$ref": "#/$defs/Tts"
+    },
+    "ui": {
+      "$ref": "#/$defs/Ui"
+    },
+    "vad": {
+      "$ref": "#/$defs/Vad"
+    }
+  },
+  "title": "Config",
+  "type": "object"
+}

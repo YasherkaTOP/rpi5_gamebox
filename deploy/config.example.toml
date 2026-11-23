@@ -1,0 +1,66 @@
+# Game Box, профиль устройства. Скопируйте в /etc/gamebox/config.toml.
+profile = "device"
+
+[engines]
+asr = "fake"
+tts = "fake"
+llm = "fake"
+embedder = "fake"
+vad = "fake"
+
+[audio]
+input_device = "plughw:CARD=Device,DEV=0"
+output_device = "hdmi:CARD=vc4hdmi1,DEV=0"
+capture_sample_rate = 48000
+sample_rate = 16000
+channels = 1
+pre_roll_ms = 300
+volume = 0.6
+
+[vad]
+frame_ms = 32
+threshold = 0.5
+min_speech_ms = 250
+silence_word_ms = 500
+silence_phrase_ms = 850
+silence_long_ms = 1200
+max_rejected = 3
+
+[asr]
+model = ""
+language = "ru"
+
+[tts]
+voice = "irina"
+rate = 1.0
+cache_max_bytes = 2000000000
+sentence_min_chars = 20
+
+[llm]
+model = ""
+context_tokens = 2048
+prompt_budget_tokens = 1000
+request_timeout_s = 30.0
+max_tokens = 40
+temperature = 0.0
+
+[paths]
+root = "/var/lib/gamebox"
+runtime = "/run/gamebox"
+
+[ui]
+static_dir = "/opt/gamebox/current/ui/dist"
+width = 1024
+height = 600
+min_touch_px = 56
+min_text_px = 22
+
+[api]
+bind = "127.0.0.1"
+port = 8080
+request_max_bytes = 100000000
+
+[logging]
+level = "info"
+max_bytes = 10000000
+backup_count = 5

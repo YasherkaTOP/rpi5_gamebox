@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling==1.33.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gamebox"
+version = "0.2.0"
+description = "Общий фундамент домашней игровой платформы Game Box"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "pydantic==2.14.4",
+    "pymorphy3==2.0.6",
+    "rapidfuzz==3.14.6",
+]
+
+[project.optional-dependencies]
+device = ["pip==26.3"]
+studio = []
+dev = [
+    "mypy==2.4.1",
+    "pip==26.3",
+    "pytest==9.2.0",
+    "pytest-asyncio==1.5.0",
+    "ruff==0.17.6",
+]
+
+[project.scripts]
+gamebox = "gamebox.devtools.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["gamebox"]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "gamebox.common.*"
+strict = true
+
+[[tool.mypy.overrides]]
+module = ["pymorphy3.*", "dawg2.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+addopts = "-ra"

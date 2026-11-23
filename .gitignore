@@ -4,3 +4,11 @@ __pycache__/
 var/
 *.hef
 *.deb
+.build/
+wheelhouse/
+ui/dist/
+ui/node_modules/
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
